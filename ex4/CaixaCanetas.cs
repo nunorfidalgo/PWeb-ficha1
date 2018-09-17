@@ -10,9 +10,13 @@ namespace ex4
         private double preco;
         private string modelo;
 
+        //public int Capacidade { get => capacidade; set => capacidade = value; }
+
+        public int Capacidade { get; set; }
+
         public CaixaCanetas(int cap, double prec, string mod)
         {
-            capacidade = cap;
+            Capacidade = cap;
             preco = prec;
             modelo = mod;
         }
@@ -26,15 +30,15 @@ namespace ex4
             Console.WriteLine("Object is being deleted");
         }
 
-        public void setCapacidade(int cap)
-        {
-            capacidade = cap;
-        }
+        //public void setCapacidade(int cap)
+        //{
+        //    capacidade = cap;
+        //}
 
-        public int getCapacidade()
-        {
-            return capacidade;
-        }
+        //public int getCapacidade()
+        //{
+        //    return capacidade;
+        //}
 
         public void setPreco(double pre)
         {
@@ -58,12 +62,12 @@ namespace ex4
 
         public int calcNumCaixas(int num_canetas)
         {
-            return num_canetas / capacidade;
+            return num_canetas / Capacidade;
         }
 
         public int calcPrecoTotal(int num_caixas)
         {
-            return capacidade * num_caixas;
+            return Capacidade * num_caixas;
         }
     }
 }

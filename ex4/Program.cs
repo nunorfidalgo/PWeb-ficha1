@@ -21,7 +21,8 @@ namespace ex4
             //Console.WriteLine("preço: {0}", Caixa.getPreco());
             //Console.WriteLine("preço: {0}", Caixa.getModelo());
 
-            Console.WriteLine("capacidade: {0}, preço: {0}, modelo: {0}.", Caixa.getCapacidade(), Caixa.getModelo(), Caixa.getModelo());
+            //Console.WriteLine("capacidade: {0}, preço: {0}, modelo: {0}.", Caixa.getCapacidade(), Caixa.getModelo(), Caixa.getModelo());
+            Console.WriteLine("capacidade: {0}, preço: {0}, modelo: {0}.", Caixa.Capacidade, Caixa.getModelo(), Caixa.getModelo());
 
             Console.Write("num_canetas: ");
             userInput = Console.ReadLine();
