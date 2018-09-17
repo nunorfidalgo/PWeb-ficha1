@@ -56,11 +56,14 @@ namespace ex4
             return modelo;
         }
 
-
-
         public int calcNumCaixas(int num_canetas)
         {
-            return capacidade * num_canetas;
+            return num_canetas / capacidade;
+        }
+
+        public int calcPrecoTotal(int num_caixas)
+        {
+            return capacidade * num_caixas;
         }
     }
 }
