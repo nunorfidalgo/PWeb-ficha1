@@ -6,7 +6,8 @@ namespace ex5
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Concurso Pesca!");
+
+
         }
     }
 }
