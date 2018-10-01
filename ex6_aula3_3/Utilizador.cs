@@ -11,19 +11,19 @@ namespace F1Ex6c
         public string Nome { get; private set; }
         public List<Tarefa> Tarefas { get; private set; }
 
-        public Utilizador(string nome)
+        public Utilizador(string nome, List<Tarefa> lt)
         {
-            Nome= nome;
-            Tarefas = new List<Tarefa>();
-            }
+            Nome = nome;
+            Tarefas = lt; // new List<Tarefa>();
+        }
 
 
-        public void AdicionarTarefa(Tarefa tarefa= null)
+        public void AdicionarTarefa(Tarefa tarefa = null)
         {
             if (tarefa == null) tarefa = new Tarefa();
             Tarefas.Add(tarefa);
 
-            }
+        }
 
 
         //Cria uma nova lista com as tarefas por ordem (decrescente) de ...
@@ -45,12 +45,12 @@ namespace F1Ex6c
                     lista = Tarefas.OrderByDescending(p => p.Estado).ToList(); break;
 
                 default: lista = Tarefas.OrderByDescending(p => p.DataLimite).ToList(); break;
-                }
-
-            return lista;
             }
 
-        
+            return lista;
+        }
+
+
         //Cria uma nova lista com as tarefas por ordem crescente da data e, para cada data, organiza as tarefas por prioridade.
         //Recorre ao Linq.
 
@@ -64,10 +64,10 @@ namespace F1Ex6c
             {
                 var TarefasByPrioridade = from q in data orderby q.Prioridade descending select q;
                 foreach (var q in TarefasByPrioridade) listadetarefas.Add(q);
-                }
+            }
 
             return listadetarefas;
-            }
+        }
 
 
         public List<Tarefa> TarefasAtrasadas(DateTime data)
@@ -78,7 +78,7 @@ namespace F1Ex6c
                 if (p.DataLimite < data && p.Estado != TipoEstado.concluida) listadetarefas.Add(p);
 
             return listadetarefas;
-            }
+        }
 
 
         public List<Tarefa> ListaDeTarefas(TipoEstado tipo)
@@ -89,7 +89,7 @@ namespace F1Ex6c
                 if (p.Estado == tipo) listadetarefas.Add(p);
 
             return listadetarefas;
-            }
+        }
 
         public List<Tarefa> ListaDeTarefas(TipoPrioridade tipo)
         {
@@ -99,7 +99,7 @@ namespace F1Ex6c
                 if (p.Prioridade == tipo) listadetarefas.Add(p);
 
             return listadetarefas;
-            }
+        }
 
         public List<Tarefa> ListaDeTarefas(TipoCategoria tipo)
         {
@@ -109,7 +109,7 @@ namespace F1Ex6c
                 if (p.Categoria == tipo) listadetarefas.Add(p);
 
             return listadetarefas;
-            }
+        }
 
 
         // USAR ESTE PROCESSO:
@@ -132,31 +132,31 @@ namespace F1Ex6c
                 if (p.Estado == tipo) Tarefas.Remove(p);
 
             return Tarefas;
-            }
+        }
 
 
         public List<Tarefa> RemoverTarefas(TipoPrioridade tipo)
         {
             foreach (Tarefa p in ListaDeTarefas(tipo)) Tarefas.Remove(p);
             return Tarefas;
-            }
+        }
 
         public List<Tarefa> RemoverTarefas(TipoCategoria tipo)
         {
             foreach (Tarefa p in ListaDeTarefas(tipo)) Tarefas.Remove(p);
             return Tarefas;
-            }
+        }
 
 
         public void MostrarTarefas(string titulo = null, List<Tarefa> listadetarefas = null)
         {
-            if(titulo != null) Console.WriteLine(titulo);
+            if (titulo != null) Console.WriteLine(titulo);
 
             foreach (Tarefa p in listadetarefas)
-                Console.WriteLine("{0} | {1} | {2} | {3} | {4} | {5}", 
-                    p.IdTarefa, p.Titulo, p.Prioridade, 
+                Console.WriteLine("{0} | {1} | {2} | {3} | {4} | {5}",
+                    p.IdTarefa, p.Titulo, p.Prioridade,
                     p.Categoria, p.Estado, p.DataLimite);
-            }
-    } 
-} 
+        }
+    }
+}
 

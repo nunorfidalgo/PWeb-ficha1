@@ -11,26 +11,26 @@ namespace F1Ex6b
         public string Nome { get; }
         public List<Tarefa> Tarefas { get; }
 
-        public Utilizador(string nome)
+        public Utilizador(string nome, List<Tarefa> lt)
         {
-            Nome= nome;
-            Tarefas = new List<Tarefa>();
-            }
+            Nome = nome;
+            Tarefas = lt; // new List<Tarefa>();
+        }
 
-        public void AdicionarTarefa(string titulo= null, 
-            TipoPrioridade prioridade = TipoPrioridade.alta, 
-            TipoCategoria categoria = TipoCategoria.trabalho, 
-            TipoEstado estado = TipoEstado.executar, 
-            string datalimite= null)
+        public void AdicionarTarefa(string titulo = null,
+            TipoPrioridade prioridade = TipoPrioridade.alta,
+            TipoCategoria categoria = TipoCategoria.trabalho,
+            TipoEstado estado = TipoEstado.executar,
+            string datalimite = null)
         {
             if (string.IsNullOrEmpty(titulo) || string.IsNullOrWhiteSpace(titulo))
                 titulo = "Tarefa";
 
             if (!DateTime.TryParse(datalimite, out DateTime data)) data = DateTime.Now.AddHours(24);
 
-            Tarefa tarefa= new Tarefa(titulo, prioridade, categoria, estado, data);
+            Tarefa tarefa = new Tarefa(titulo, prioridade, categoria, estado, data);
             Tarefas.Add(tarefa);
-            }
+        }
 
         //organiza as tarefas por ordem decrescente data e para cada data
 
@@ -38,9 +38,10 @@ namespace F1Ex6b
         {
             List<Tarefa> lista = null;
 
-            switch (tipordem) {
+            switch (tipordem)
+            {
                 case TipoOrdem.titulo:
-                    lista= Tarefas.OrderByDescending(p => p.Titulo).ToList(); break;
+                    lista = Tarefas.OrderByDescending(p => p.Titulo).ToList(); break;
                 case TipoOrdem.prioridade:
                     lista = Tarefas.OrderByDescending(p => p.Prioridade).ToList(); break;
                 case TipoOrdem.categoria:
@@ -49,10 +50,10 @@ namespace F1Ex6b
                     lista = Tarefas.OrderByDescending(p => p.Estado).ToList(); break;
 
                 default: lista = Tarefas.OrderByDescending(p => p.DataLimite).ToList(); break;
-                }
+            }
 
             return lista;
-            }
+        }
 
 
 
@@ -64,7 +65,7 @@ namespace F1Ex6b
                 if (p.DataLimite < data && p.Estado != TipoEstado.concluida) listadetarefas.Add(p);
 
             return listadetarefas;
-            }
+        }
 
 
         public List<Tarefa> ListaDeTarefas(TipoEstado tipo)
@@ -75,7 +76,7 @@ namespace F1Ex6b
                 if (p.Estado == tipo) listadetarefas.Add(p);
 
             return listadetarefas;
-            }
+        }
 
         public List<Tarefa> ListaDeTarefas(TipoPrioridade tipo)
         {
@@ -85,7 +86,7 @@ namespace F1Ex6b
                 if (p.Prioridade == tipo) listadetarefas.Add(p);
 
             return listadetarefas;
-            }
+        }
 
         public List<Tarefa> ListaDeTarefas(TipoCategoria tipo)
         {
@@ -95,7 +96,7 @@ namespace F1Ex6b
                 if (p.Categoria == tipo) listadetarefas.Add(p);
 
             return listadetarefas;
-            }
+        }
 
 
         // USAR ESTE PROCESSO:
@@ -118,31 +119,31 @@ namespace F1Ex6b
                 if (p.Estado == tipo) Tarefas.Remove(p);
 
             return Tarefas;
-            }
+        }
 
 
         public List<Tarefa> RemoverTarefas(TipoPrioridade tipo)
         {
             foreach (Tarefa p in ListaDeTarefas(tipo)) Tarefas.Remove(p);
             return Tarefas;
-            }
+        }
 
         public List<Tarefa> RemoverTarefas(TipoCategoria tipo)
         {
             foreach (Tarefa p in ListaDeTarefas(tipo)) Tarefas.Remove(p);
             return Tarefas;
-            }
+        }
 
 
         public void MostrarTarefas(string titulo = null, List<Tarefa> listadetarefas = null)
         {
-            if(titulo != null) Console.WriteLine(titulo);
+            if (titulo != null) Console.WriteLine(titulo);
 
             foreach (Tarefa p in listadetarefas)
-                Console.WriteLine("{0} | {1} | {2} | {3} | {4} | {5}", 
-                    p.IdTarefa, p.Titulo, p.Prioridade, 
+                Console.WriteLine("{0} | {1} | {2} | {3} | {4} | {5}",
+                    p.IdTarefa, p.Titulo, p.Prioridade,
                     p.Categoria, p.Estado, p.DataLimite);
-            }
-    } 
-} 
+        }
+    }
+}
 

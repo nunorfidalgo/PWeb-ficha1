@@ -10,7 +10,7 @@ namespace F1Ex6a
     {
         static void Main(string[] args)
         {
-            Utilizador u = new Utilizador("Bananas");
+            Utilizador u = new Utilizador("Bananas", new List<Tarefa>());
 
             //Mock Data
             u.AdicionarTarefa();
@@ -29,6 +29,6 @@ namespace F1Ex6a
             u.MostrarTarefas("\nTarefas Prioritárias\n", u.ListaDeTarefas(TipoPrioridade.alta));
             u.MostrarTarefas("\nTarefas Pessoais\n", u.ListaDeTarefas(TipoCategoria.pessoal));
 
-            }  
+        }
     }
 }

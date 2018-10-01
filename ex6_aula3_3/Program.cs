@@ -10,7 +10,7 @@ namespace F1Ex6c
     {
         static void Main(string[] args)
         {
-            Utilizador u = new Utilizador("Bananas");
+            Utilizador u = new Utilizador("Bananas", new List<Tarefa>());
 
             Console.WriteLine("F1Ex6c {0}", u.Nome);
 
